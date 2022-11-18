@@ -51,7 +51,7 @@ router.post(
       console.log("here");
       const token = await admin.generateToken();
       console.log("this is token ", token);
-      res.cookie("jwtadmin", token, {
+      res.cookie("jwt", token, {
         httpOnly: true,
       });
       console.log("ye mera cookie hai", req.cookies.jwt);
@@ -69,7 +69,7 @@ router.post(
 
 //LOGIN USER
 router.post(
-  "/login",
+  "/loginadmin",
   [
     body("email", "please enter a valid email").isEmail(),
     body("password", "length of password should be atleast 5").isLength({
@@ -92,14 +92,15 @@ router.post(
       // console.log("here");
       const token = await admin.generateToken();
       console.log("this is token ", token);
-      res.cookie("jwtlogin", token, {
+      res.cookie("jwt", token, {
         httpOnly: true,
       });
-      console.log("ye mera login ka cookie hai", req.cookies.jwtlogin);
+      console.log("ye mera login ka cookie hai", req.cookies.jwt);
       const passwordCheck = bcrypt.compare(req.body.password, admin.password);
 
       if (passwordCheck) {
-        res.status(201).json({ success: true, token });
+        // res.status(201).json({ success: true, token });
+        res.render("localArticles/articles",{login:true})
       } else {
         // throw new userError("ReferenceError", "Passwords are not matching");
         res

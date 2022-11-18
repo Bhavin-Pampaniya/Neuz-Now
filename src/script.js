@@ -1,2 +1,2 @@
-// const element = document.getElementsByClassName("nav-link");
-console.log("hello");
+const pathname = document.location.pathname;
+console.log(pathname);

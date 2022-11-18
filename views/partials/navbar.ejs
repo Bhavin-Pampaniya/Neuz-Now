@@ -35,14 +35,23 @@
               >
             </li>
           </ul>
+          <% if(locals.login) { %>
+          <div class="mx-1">
+            <a class="btn btn-primary" href="/logout" role="button">Logout</a>
+          </div>
+          <% } else { %>
           <div class="mx-1">
             <a class="btn btn-primary" href="/login" role="button">Login</a>
           </div>
           <div class="mx-1">
+            <a class="btn btn-primary" href="/loginadmin" role="button">Login For Admin</a>
+          </div>
+          <div class="mx-1">
             <a class="btn btn-primary" href="/signup" role="button">Sign Up</a>
           </div>
+          <% } %>
         </div>
-      </div>
+      </div> 
     </nav>
 
     <script>

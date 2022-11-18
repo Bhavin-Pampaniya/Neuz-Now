@@ -4,9 +4,9 @@ const { body, validationResult } = require("express-validator");
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const authUser = require("../middleware/authUser");
-
 const success = false;
-
+const fetch = (...args) =>
+  import("node-fetch").then(({ default: fetch }) => fetch(...args));
 function userError(error, message) {
   this.error = error;
   this.message = message;
@@ -44,9 +44,7 @@ router.post(
       console.log(password, confirmpassword);
       if (password === confirmpassword) {
         try {
-            
-        
-        user = new User({
+          user = new User({
             name: req.body.name,
             email: req.body.email,
             password: password,
@@ -59,28 +57,44 @@ router.post(
           res.cookie("jwt", token, {
             httpOnly: true,
           });
-          console.log("ye mera cookie hai", req.cookies.jwt);
+
+          // const here = localStorage.getItem("token")
+          // console.log(here);
+          //   localStorage.setItem('jwt',"tokenhai ye");
+          //   localStorage.getItem("mytoken",token);
+
+          //   console.log("ye mera cookie hai", req.cookies.jwtcreate);
+
           await user.save();
-          //   res.render("index");
-          res.redirect("/");
+          try {
+            const response = await fetch(
+              "https://newsapi.org/v2/top-headlines?country=in&apiKey=eff6c38fe8674e6f91eebd45259238b4"
+            );
+            const data = await response.json();
+            // res.render("articles/index", {
+            //   articles: data.articles,
+            //   login: true,
+            // });
+          } catch (error) {
+            console.log(error.message);
+          }
+            res.redirect("/");
         } catch (error) {
-            const message = {
-                msg: error.message,
-              };
-              res.render("articles/signup", { message: message });
-        }
-          //   res.status(201).json({ success: true, token });
-          // res.send("successfully created account");
-        
-      } else {
-        const message = {
-            msg: "passwords are not matching",
+          const message = {
+            msg: error.message,
           };
           res.render("articles/signup", { message: message });
+        }
+        //   res.status(201).json({ success: true, token });
+        // res.send("successfully created account");
+      } else {
+        const message = {
+          msg: "passwords are not matching",
+        };
+        res.render("articles/signup", { message: message });
         //   res.json({error:"passwords are not matching bro kuch kar"})
-          console.log({error:"passwords are not matching bro kuch kar"})
+        console.log({ error: "passwords are not matching bro kuch kar" });
         // throw new userError(success, "Passwords are not matching");
-        
       }
     } catch (error) {
       const message = {
@@ -121,16 +135,27 @@ router.post(
       // console.log("here");
       const token = await user.generateToken();
       console.log("this is token ", token);
-      res.cookie("jwtlogin", token, {
+      res.cookie("jwt", token, {
         httpOnly: true,
       });
-      console.log("ye mera login ka cookie hai", req.cookies.jwtlogin);
+      console.log("ye mera login ka cookie hai", req.cookies.jwt);
       const passwordCheck = bcrypt.compare(req.body.password, user.password);
 
       if (passwordCheck) {
-        // res.status(201).json({ success: true, token });
-        //   res.render("articles/index");
-        res.redirect("/");
+        try {
+          const response = await fetch(
+            "https://newsapi.org/v2/top-headlines?country=in&apiKey=eff6c38fe8674e6f91eebd45259238b4"
+          );
+          const data = await response.json();
+          // res.status(201).json({ success: true, token });
+        //   res.render("articles/index", {
+        //     articles: data.articles,
+        //     login: true,
+        //   });
+            res.redirect("/");
+        } catch (error) {
+          console.log(error.message);
+        }
       } else {
         // throw new userError("ReferenceError", "Passwords are not matching");
         res
@@ -160,5 +185,7 @@ router.post("/getuser", authUser, async (req, res) => {
     });
   }
 });
+
+
 
 module.exports = router;
