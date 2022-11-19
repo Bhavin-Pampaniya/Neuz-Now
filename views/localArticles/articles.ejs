@@ -67,48 +67,55 @@
               <a class="nav-link" id="int" href="/category/health">Health</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" id="int" href="admin/category/local"
+              <a class="nav-link active" id="int" href="/admin/category/local"
                 >Local News</a
               >
             </li>
           </ul>
-          <% if(locals.login) { %>
+          <% if(locals.name) { %> 
+            <div class="mx-1">
+                <h2><span class="badge bg-secondary"> <%= name %>  </span></h2>
+            </div>
+            <% } %>
+          <% if(locals.admin) { %> 
           <div class="mx-1">
             <a class="btn btn-primary" href="/logout" role="button">Logout</a>
           </div>
           <% } else { %>
           <div class="mx-1">
-            <a class="btn btn-primary" href="/login" role="button">Login</a>
+            <a class="btn btn-secondary" href="/login" role="button">Login</a>
           </div>
           <div class="mx-1">
-            <a class="btn btn-primary" href="/loginadmin" role="button"
+            <a class="btn btn-secondary" href="/loginadmin" role="button"
               >Login For Admin</a
             >
           </div>
           <div class="mx-1">
-            <a class="btn btn-primary" href="/signup" role="button">Sign Up</a>
+            <a class="btn btn-secondary" href="/signup" role="button">Sign Up</a>
           </div>
           <% } %>
         </div>
       </div>
     </nav>
-
     <div class="container">
       <h1 class="my-2 text-center">Neuz Now - Local News</h1>
+      <% if(locals.admin) { %> 
       <div class="d-flex justify-content-center">
-      <div class="my-5 text-center" style=" width:22rem ">
-            <div class="card text-center">
-                <div class="card-header">
-                    <h5 class="card-title">ADD NEW NEWS</h5>
-                </div>
-                <div class="card-body">
-                    <a class="btn btn-success mx-1" href="#" role="button">ADD</a>
-                </div>
-            </div>
+          <div class="my-5 text-center" style=" width:22rem ">
+              <div class="card text-center">
+                  <div class="card-header">
+                      <h5 class="card-title">ADD NEW NEWS</h5>
+                  </div>
+                  <div class="card-body">
+                      <a class="btn btn-success mx-1" href="#" role="button">CLICK HERE TO ADD</a>
+                  </div>
+              </div>
+          </div>
         </div>
-      </div>
+        <% } %> 
       <div class="row">
-        <% articles.forEach(article=> { %>
+        <% if(articles) { %> 
+        <% articles.forEach(article => { %>
         <div class="col-md-3 my-4">
           <div class="card" style="width: 18rem;">
             <img
@@ -124,13 +131,21 @@
                 article.description.slice(0,120):"OOPS!! API error" %>...
               </p>
             </div>
+            <% if(locals.admin) { %> 
             <div class="d-flex container my-2">
               <a class="btn btn-primary mx-1" href="#" role="button">Edit</a>
               <a class="btn btn-danger mx-1" href="#" role="button">Delete</a>
             </div>
+            <% } %> 
           </div>
         </div>
         <% }) %>
+        <% } else { %> 
+            <div class="container my-4 text-center">
+              <!-- <h4>No news to show.</h4> -->
+              <h2><span class="badge text-bg-primary">No news to show.</span></h2
+            </div>
+          <% } %> 
       </div>
     </div>
 

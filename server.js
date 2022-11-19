@@ -8,6 +8,7 @@ const app = express();
 const authUser = require("./middleware/authUser");
 const authAdmin = require("./middleware/authAdmin");
 const User = require("./models/user");
+const Admin = require("./models/admin");
 const jwt = require("jsonwebtoken")
 
 // console.log(here);
@@ -43,8 +44,11 @@ app.get("/", async (req, res) => {
   try {
     let user = false;
     if(req.cookies.jwt){
-      const userId = jwt.verify(req.cookies.jwt, process.env.PRIVATE_KEY);
-      user = await User.findOne({_id:userId});
+      const _id = jwt.verify(req.cookies.jwt, process.env.PRIVATE_KEY);
+      user = await User.findOne({_id});
+      if(!user){
+        user = await Admin.findOne({_id});
+      }
     }
     let flag = false;
     if (req.cookies.jwt) {
@@ -80,22 +84,22 @@ app.get("/logout", authUser, async (req, res) => {
     res.clearCookie("jwt");
     console.log("logout successfully");
     res.redirect("/login");
-    await req.user.save();
+    // await req.user.save();
   } catch (error) {
     console.log(error);
   }
 });
 
-app.get("/logout", authAdmin, async (req, res) => {
-  try {
-    console.log(req.user);
-    res.clearCookie("jwt");
-    console.log("logout successfully");
-    res.redirect("/login");
-    await req.user.save();
-  } catch (error) {
-    console.log(error);
-  }
-});
+// app.get("/logout", authAdmin, async (req, res) => {
+//   try {
+//     console.log(req.user);
+//     res.clearCookie("jwt");
+//     console.log("logout successfully");
+//     res.redirect("/login");
+//     await req.user.save();
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
 
 module.exports = { fetch };

@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 
 const authUser = async (req, res, next) => {
-  const token = req.cookies.jwtadmin;
+  const token = req.cookies.jwt;
   try {
     if (!token) throw new Error({ message: "Please authenticate yourself" });
     const userId = jwt.verify(token, process.env.PRIVATE_KEY);
