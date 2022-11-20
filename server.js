@@ -9,7 +9,9 @@ const authUser = require("./middleware/authUser");
 const authAdmin = require("./middleware/authAdmin");
 const User = require("./models/user");
 const Admin = require("./models/admin");
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
+const methodOverride = require("method-override");
+
 
 // console.log(here);
 // const fetch = require("node-fetch");
@@ -28,15 +30,17 @@ require("./db/connection");
 //     saveUninitialized:true,
 //     resave: false
 // }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
-app.use(express.urlencoded({ extended: false }));
 // import articlesRoute from "./routes/articles";
 // app.use("/articles",articlesRoute);
-app.use("/admin/category", require("./routes/adminArticles"));
 app.use("/api/admin", require("./routes/adminAuth"));
 app.use("/category", require("./routes/articles"));
-app.use("/api", require("./routes/auth"));
+app.use("/api", require("./routes/auth"));  
+app.use(methodOverride("_method"));
+
+ 
 // app.set("views",path.join(__dirname,"./views/"));
 app.set("view engine", "ejs");
 
@@ -89,6 +93,7 @@ app.get("/logout", authUser, async (req, res) => {
     console.log(error);
   }
 });
+app.use("/admin/category", require("./routes/adminArticles")); 
 
 // app.get("/logout", authAdmin, async (req, res) => {
 //   try {
@@ -97,7 +102,7 @@ app.get("/logout", authUser, async (req, res) => {
 //     console.log("logout successfully");
 //     res.redirect("/login");
 //     await req.user.save();
-//   } catch (error) {
+//   } catch (error) { 
 //     console.log(error);
 //   }
 // });

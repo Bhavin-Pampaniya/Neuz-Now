@@ -137,13 +137,13 @@ router.post(
               urlToImage: "../../images/img3.jpg",
             }
           ];
-          
-          res.render("localArticles/articles", {
-            articles: articles,
-            login: true,
-            admin:isAdmin,
-            name:admin.name
-          });
+          res.redirect("/admin/category/local")
+          // res.render("localArticles/articles", {
+          //   articles: articles,
+          //   login: true,
+          //   admin:isAdmin,
+          //   name:admin.name
+          // });
         } catch (error) {
           res
             .status(500)
