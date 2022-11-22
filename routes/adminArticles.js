@@ -5,6 +5,33 @@ const User = require("../models/user")
 const jwt = require(
   "jsonwebtoken");
 const Article = require("../models/article");
+const multer = require("multer");
+
+//define storage for the images
+const storage = multer.diskStorage({
+  // destionation for files 
+  destination:function (req,file,cb) {
+    cb(null,"./src/upload")
+  },
+
+  //add back the extension
+  filename:function (req,file,cb){
+    cb(null,Date.now()+file.originalname)
+  },
+});
+
+
+//upload parameters for multer
+const upload = multer({
+  storage:storage,
+  limits:{
+    fileSize:1024 * 1024 * 5
+  }
+})
+
+
+
+
 
 router.get("/local", async (req, res) => {
   let success = false;
@@ -98,11 +125,14 @@ router.get("/local/new",async (req, res) => {
 }
 })
 
-router.post("/",async (req,res)=>{
+router.post("/", upload.single("urlToImage") , async (req,res)=>{
+  console.log(req.file);
   let article = new Article({
     title: req.body.title,
     description: req.body.description,
-    urlToImage: req.body.urlToImage,
+    // urlToImage: req.body.urlToImage,
+    urlToImage: req.file.filename,
+
 })
 try {
     article = await article.save();
@@ -113,17 +143,18 @@ try {
 }
 })
 
-router.put("/edit/:id",async (req,res)=>{
+router.put("/edit/:id", upload.single("urlToImage") ,async (req,res)=>{
+  console.log(req.file);
   try {
     let article = await Article.findById(req.params.id);
     article.title = req.body.title;
     article.description = req.body.description;
-    article.urlToImage = req.body.urlToImage;
+    article.urlToImage = req.file.filename;
 
     article = await article.save();
     res.redirect("/admin/category/local");
   } catch (error) {
-    
+      console.log(error);
   }
 })
 

@@ -1,3 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
+:root{
+    --card-border-radius:10px
+}
+
+body{
+    background-color: #4158D0;
+background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+
+
+}
+.navbar{
+    height: 10vh;
+}
+
 .hide{
     display: none;
 }
@@ -8,18 +23,28 @@
     padding: 8rem 0;
     margin: 1rem 0;
     width: 78%;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("./images/india.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     height: 150%;
     border-radius: 2rem;
 }
+.indian{    
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("./images/indian.jpg");
+}
+.international{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("./images/international2.jpg");
+}
+.sports{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("./images/sports.jpg");
+}
 .nav-link{
     border-radius: 8px;
+    padding: auto 0;
 }
 .nav-link:hover{
     background-color: #198754;
     color:#fff;
+    transition: all .5s;
 }
 .nav-item{
     margin: 0 .5rem;
@@ -31,4 +56,93 @@
 #local:hover{
     background-color: #198754;
     color:#fff;
+} 
+.heading{
+    font-family: 'Ubuntu', sans-serif;
+}
+.main-container{
+    margin: 2.5rem 0;
+    height: 90vh;
+}
+.loginContainer{
+    border-radius: 3rem;
+    margin: auto;
+    padding-bottom: 1rem ;
+    background-color: #f7f7f7;
+    display: flex;
+    width:25%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}   
+.card{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#feffe8+0,d6dbbf+100;Wax+3D+%231 */
+background: #feffe8; /* Old browsers */
+background: -moz-linear-gradient(top,  #feffe8 0%, #d6dbbf 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #feffe8 0%,#d6dbbf 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #feffe8 0%,#d6dbbf 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feffe8', endColorstr='#d6dbbf',GradientType=0 ); /* IE6-9 */
+
+
+
+}
+.mycard{
+    border-radius:10px !important;
+}
+.loginBox{
+    margin: auto;
+} 
+.loginimg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0;
+}
+.loginimg img{
+    width: 10rem;
+    height: 10rem;
+}     
+.top-container{
+    margin: 1rem 0;
+    display: flex;
+    gap: 2rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.inputdiv{
+    width: 18rem;
+}
+.otherlinks{
+    display: flex;
+    justify-content: space-between;
+}
+.signulinksplink a{
+    text-decoration: none;
+    text-decoration:underline;
+    color: blue;
+}
+.links a:hover{
+    color: black;
+    transition: color .1s;
+    
+}
+.input{
+    outline: none;
+    border: .1px solid rgb(189, 188, 188);
+    background-color: #fff;
+    margin: 0;
+    width: 100%; 
+    padding: .5rem .2rem;
+}
+.input:focus{
+    border: 1px solid blue;
+}
+.btn{
+    margin: .5rem 0;
+    width: 100%;
+}
+.main-img img{
+    width: 8rem;
+    height: 8rem; 
 }

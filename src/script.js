@@ -1,2 +1,1 @@
-const pathname = document.location.pathname;
-console.log(pathname);
+console.log("hello");

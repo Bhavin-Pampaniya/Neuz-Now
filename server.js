@@ -17,7 +17,6 @@ const methodOverride = require("method-override");
 // const fetch = require("node-fetch");
 // import fetch from "node-fetch";
 const path = require("path");
-app.use(express.static(path.join(__dirname, "/src")));
 const port = 3000;
 const cookieParser = require("cookie-parser");
 const fetch = (...args) =>
@@ -93,7 +92,13 @@ app.get("/logout", authUser, async (req, res) => {
     console.log(error);
   }
 });
-app.use("/admin/category", require("./routes/adminArticles")); 
+app.use(express.static(path.join(__dirname, "/src")));
+app.use("/api/admin", require("./routes/adminAuth"));
+app.use("/category", require("./routes/articles"));
+app.use("/api", require("./routes/auth"));  
+app.use(methodOverride("_method"));
+app.use("/admin/category", require("./routes/adminArticles"));
+
 
 // app.get("/logout", authAdmin, async (req, res) => {
 //   try {
