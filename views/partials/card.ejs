@@ -1,5 +1,5 @@
 <% articles.forEach(article=> { %>
-<div class="col-md-4 my-4">
+<div class="col-md-4 my-4 d-flex justify-content-center">
   <div class="card" style="width: 22rem; height: 100%">
     <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-danger">
       <%= article.source.name %> 
@@ -8,13 +8,13 @@
     src="<%=article.urlToImage?article.urlToImage:"https://img.etimg.com/thumb/msid-95524313,width-1070,height-580,imgsize-121724,overlay-economictimes/photo.jpg"
     %> " class="card-img-top" alt="..." />
     <div class="card-body">
-      <h5 class="card-title">
+      <h5 class="card-title"> 
         <%= article.title? article.title.slice(0,70):"OOPS!! API error" %>...
       </h5>
       <p class="card-text">
         <%= article.description ? article.description.slice(0,120):"OOPS!! API error" %>...
-      </p>
-      <a href="<%= article.url %>" class="btn btn-primary" target="_blank"
+      </p> 
+      <a href="<%= article.url %>" class="newsBtn btn btn-primary" target="_blank"
         >Read More...</a>
         <div class="my-1">
           <p className="card-text"> 

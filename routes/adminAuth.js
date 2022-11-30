@@ -82,13 +82,13 @@ router.post(
     if (!errors.isEmpty()) {
       return res
         .status(400)
-        .json({ message: errors.errors[0].msg, errors: errors.array() });
+        .render("articles/loginadmin",{ message: errors.errors[0].msg});
     }
 
     try {
       const admin = await Admin.findOne({ email: req.body.email });
       if (!admin){
-        return res.status(400).json({ success, error: "Invalid Details" });
+        return res.status(400).render("articles/loginadmin", {message: "Invalid Details" });
       }
       console.log(admin);
       // console.log("here");
@@ -147,13 +147,13 @@ router.post(
         } catch (error) {
           res
             .status(500)
-            .json({ success: false, message: "passwords are not matching" });
+            .render("articles/loginadmin", {message:"passwords are not matching" });
         }
       } else {
         // throw new userError("ReferenceError", "Passwords are not matching");
         res
           .status(400)
-          .json({ success: false, message: "passwords are not matching" });
+          .render("articles/loginadmin",{ message: "passwords are not matching" });
       }
     } catch (error) {
       res.status(500).json({

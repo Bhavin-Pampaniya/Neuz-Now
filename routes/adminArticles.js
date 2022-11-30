@@ -6,6 +6,8 @@ const jwt = require(
   "jsonwebtoken");
 const Article = require("../models/article");
 const multer = require("multer");
+const Contact = require("../models/contact");
+const authUser = require("../middleware/authUser");
 
 //define storage for the images
 const storage = multer.diskStorage({
@@ -156,6 +158,11 @@ router.put("/edit/:id", upload.single("urlToImage") ,async (req,res)=>{
   } catch (error) {
       console.log(error);
   }
+})
+router.get("/feedback",async (req,res)=>{
+  const article = await Contact.find().sort({ createdAt: "desc" });
+  res.render("localArticles/feedback",{articles:article});
+  // res.json(article);
 })
 
 router.get("/edit/:id",async(req,res)=>{

@@ -1,108 +1,273 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
-:root{
-    --card-border-radius:10px
+
+:root {
+    --hue-color: 250;
+
+    /* HSL color mode */
+    --title-color: hsl(var(--hue-color), 8%, 15%);
+    --text-color: hsl(var(--hue-color), 8%, 45%);
+    --text-color-light: hsl(var(--hue-color), 8%, 65%);
+    --input-color: hsl(var(--hue-color), 30%, 92%);
+
+    /*========== Font and typography ==========*/
+    --body-font: 'Poppins', sans-serif;
+
+    /* .5rem = 8px, 1rem = 16px, 1.5rem = 24px ... */
+    --h1-font-size: 1.5rem;
+    --normal-font-size: .938rem;
+
+    /*========== Font weight ==========*/
+    --font-medium: 500;
+    --font-semi-bold: 600;
+
 }
 
-body{
-    background-color: #4158D0;
-background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
-
-
+* {
+    padding: 0;
+    margin: 0;
 }
-.navbar{
+
+body {
+    background-color: #fff;
+    scroll-behavior: smooth;
+}
+
+.section {
+    padding: 6rem 0;
+}
+
+.footer-container {
+    max-width: 90rem;
+    margin: 0 auto;
+}
+
+.section_title {
+    font-size: 2.3rem;
+    color: var(--title-color);
+}
+
+.section_subtitle {
+    display: block;
+    font-size: var(--small-font-size);
+    margin-bottom: var(--mb-3);
+}
+
+.section_title,
+.section_subtitle {
+    text-align: center;
+}
+.grid {
+    display: grid;
+    gap: 2rem;
+}
+.grid-three-col {
+    grid-template-columns: repeat(3, 1fr);
+} 
+.card-img-top {
+    padding: 0;
+    transition: all .2s;
+}  
+  
+.card-img-top:hover {
+    /* width: 23rem;
+    height: 110%; */ 
+    padding: 0;
+    padding: 2rem;
+    transition: all .2s linear;
+}
+
+.navbar {
     height: 10vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background-image: linear-gradient(to right, #434343 0%, black 100%);
 }
 
-.hide{
+.hide {
     display: none;
 }
-.imgcontainer{
-    width: 100%;
+
+.imgcontainer-index {
+    margin-top: 5.2rem;
+    width: 98.75vw;
+    height: 90vh;
 }
-.img{
+
+.contaier {
+    padding: 0;
+    margin: 0;
+}
+
+.imgcontainer {
+    width: 70%;
+    margin: 4.8rem auto 0;
+    /* margin:0; */
+    /* height: 40vh; */
+}
+
+.index_imgcontainer {
+    width: 70%;
+    margin: auto;
+
+}
+
+/* .card-container {
+    margin: 5rem 0 0 0;
+} */
+
+.img-index {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("./images/news.jpg");
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     padding: 8rem 0;
-    margin: 1rem 0;
-    width: 78%;
+    /* margin: 1rem 0; */
+    width: 100%;
+    height: 100%;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 150%;
+    /* height: 150%; */
+}
+
+.img-index h2 {
+    font-size: 10rem;
+    color: rgb(34, 150, 34);
+}
+
+.img {
+
+    /* box-shadow: rgba(49, 46, 240, 0.4) 0px 5px, rgba(49, 46, 240, 0.3) 0px 10px, rgba(46, 137, 240, 0.2) 0px 15px, rgba(91, 46, 240, 0.1) 0px 20px, rgba(46, 117, 240, 0.05) 0px 25px; */
+
+
+    box-shadow: rgba(53, 46, 240, 0.4) -5px 5px, rgba(53, 46, 240, 0.3) -10px 10px, rgba(62, 46, 240, 0.2) -15px 15px, rgba(62, 46, 240, 0.1) -20px 20px, rgba(56, 46, 240, 0.05) -25px 25px;
+
+    /* box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset; */
+
+    padding: 8rem 0;
+    width: 100%;
+    height: 100%;
+    margin: 3rem 0;
+    background-repeat: no-repeat;
+    background-size: cover;
     border-radius: 2rem;
 }
-.indian{    
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("./images/indian.jpg");
+
+
+.indian {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("./images/bg.jpg");
 }
-.international{
+
+.international {
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("./images/international2.jpg");
 }
-.sports{
+
+.sports {
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("./images/sports.jpg");
 }
-.nav-link{
+
+.business{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("./images/business.jpg");
+}
+.local{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("./images/Neuz\ Now-logos.jpeg");
+}
+.local-feedback{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url("./images/feedback.jpg");
+}
+.health{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("./images/health.jpg");
+}
+.ent{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("./images/ent.jpg");
+}
+.tech{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("./images/tech3.jpg");
+}
+.science{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("./images/sci.jpg");
+}
+
+.nav-link {
     border-radius: 8px;
     padding: auto 0;
 }
-.nav-link:hover{
+
+.nav-link:hover {
     background-color: #198754;
-    color:#fff;
+    color: #fff;
     transition: all .5s;
 }
-.nav-item{
+
+.nav-item {
     margin: 0 .5rem;
 }
-#local{
+
+#local {
     color: #198754;
     font-weight: bolder;
 }
-#local:hover{
+
+#local:hover {
     background-color: #198754;
-    color:#fff;
-} 
-.heading{
+    color: #fff;
+}
+
+.nav-item:nth-last-child(1) .nav-link{
+    color: #198754;
+    font-weight: bolder;
+}
+.nav-item:nth-last-child(1) .nav-link:hover{
+    color: white;
+    background-color:#198754 ;
+}
+.heading {
     font-family: 'Ubuntu', sans-serif;
 }
-.main-container{
-    margin: 2.5rem 0;
-    height: 90vh;
+
+.main-container {
+    margin: 2.5rem 0 0;
+    height: 85vh; 
 }
-.loginContainer{
-    border-radius: 3rem;
+
+.loginContainer {
+    border-radius: 1rem;
     margin: auto;
-    padding-bottom: 1rem ;
+    padding-bottom: 1rem;
     background-color: #f7f7f7;
     display: flex;
-    width:25%;
+    width: 25%;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}   
-.card{
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-
-    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#feffe8+0,d6dbbf+100;Wax+3D+%231 */
-background: #feffe8; /* Old browsers */
-background: -moz-linear-gradient(top,  #feffe8 0%, #d6dbbf 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(top,  #feffe8 0%,#d6dbbf 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom,  #feffe8 0%,#d6dbbf 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feffe8', endColorstr='#d6dbbf',GradientType=0 ); /* IE6-9 */
-
-
-
 }
-.mycard{
-    border-radius:10px !important;
+
+.card {
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
-.loginBox{
+
+.mycard {
+    border-radius: 10px !important;
+}
+
+.loginBox {
     margin: auto;
-} 
-.loginimg{
+}
+
+.loginimg {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 2rem 0;
 }
-.loginimg img{
+
+.loginimg img {
     width: 10rem;
     height: 10rem;
-}     
-.top-container{
+}
+
+.top-container {
     margin: 1rem 0;
     display: flex;
     gap: 2rem;
@@ -110,39 +275,289 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feffe8', end
     justify-content: center;
     align-items: center;
 }
-.inputdiv{
+
+.inputdiv {
     width: 18rem;
 }
-.otherlinks{
+
+.otherlinks {
     display: flex;
     justify-content: space-between;
 }
-.signulinksplink a{
+
+.signulinksplink a {
     text-decoration: none;
-    text-decoration:underline;
+    text-decoration: underline;
     color: blue;
 }
-.links a:hover{
+
+.links a:hover {
     color: black;
     transition: color .1s;
-    
+
 }
-.input{
+
+.input {
     outline: none;
     border: .1px solid rgb(189, 188, 188);
     background-color: #fff;
     margin: 0;
-    width: 100%; 
+    width: 100%;
     padding: .5rem .2rem;
 }
-.input:focus{
+
+.input:focus {
     border: 1px solid blue;
 }
-.btn{
+
+.btn {
     margin: .5rem 0;
     width: 100%;
+    background: rgb(70, 136, 241) !important;
 }
-.main-img img{
+
+.btn:hover {
+    color: rgb(70, 136, 241) !important;
+    background-color: white !important;
+    transition: all .5s
+}
+.button-flex{
+    color: #fff;
+    width: 15%;
+}
+
+.main-img img {
     width: 8rem;
-    height: 8rem; 
+    height: 8rem;
 }
+
+.category-details {
+    margin: 2.5rem 0 1rem 0;
+    background :linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("./images/bg.jpg");
+    /* background: url("./images/bg.jpg"); */
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+}
+
+.category-details .category-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #3e64ff;
+    opacity: .3;
+}
+
+.category-container h2 span {
+    /* color: rgb(177, 117, 5); */
+    color: rgb(17, 169, 17);
+    font-size: 3rem;
+    /* text-shadow: 3px 4px 7px rgba(81,67,21,0.8); */
+    text-shadow: 0 2px 1px #333632, 
+      -1px 3px 1px #3d3f3b, 
+      -2px 5px 1px #3a3f3a;
+}
+
+.category-container {
+    padding: 8rem 0;
+    position: relative;
+    text-align: center;
+}
+
+.category-container h2 {
+    /* text-align: center; */
+    font-weight: bold; 
+    color: #fff;
+    font-size: 2.5rem;
+}
+
+.categorynews:after {
+    content: "Business";
+    animation: changetext 15s infinite linear;
+    /* color: #198754; */
+}
+
+@keyframes changetext {
+    0% {
+        content: "Business";
+    }
+
+    18% {
+        content: "Entertainment";
+    }
+
+    27% {
+        content: "General";
+    }
+
+    35% {
+        content: "Health";
+    }
+
+    48% {
+        content: "Science";
+    }
+
+    60% {
+        content: "Sports";
+    }
+
+    70% {
+        content: "Technology";
+    }
+
+    80% {
+        content: "Local";
+    }
+    98% {
+        content: "Business";
+    }
+}
+/* =====================CONTACT ========================= */
+.contact_information {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--mb-1-5);
+}
+
+.contact_icon {
+    font-size: 1.7rem;
+    margin-right: .5rem;
+    color: var(--first-color);
+}
+
+.contact_title {
+    font-size: var(--normal-font-size);
+}
+
+.contact_subtitle {
+    font-size: var(--small-font-size);
+}
+
+.contact_input {
+    width: 100%;
+    padding: .25rem .5rem .5rem 0;
+    background: var(--input-color);
+    border: none;
+    outline: none;
+    font-family: var(--body-font);
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.contact_content {
+    background: var(--input-color);
+    padding: .75rem 1rem .25rem;
+    border-radius: .5rem;
+}
+
+.contact-label {
+    font-size: var(--smaller-font-size);
+    color: var(--title-color);
+}
+
+/* Footer  */
+.section-footer .grid{
+    gap: 8rem;
+}
+.section-footer{
+    background: rgb(0, 0, 59);
+}
+.section-footer h3{
+    margin-bottom: 1rem;
+    color: white;
+    font-weight: bold;
+    font-size:1rem;
+}
+.section-footer p{
+    color: #777;
+    font-size: 1.1remrem; 
+}
+.section-footer a{
+    font-weight: bold;
+    text-transform: capitalize;
+    color: #777;
+    font-size: 1.1remrem;
+}
+.section-footer a:hover{
+    color: white;
+} 
+.footer-links,
+.personal-info address{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.footer-links a{
+    width:fit-content;
+    position: relative;
+}
+.footer-links a::before{
+    content: "\f178";
+    position: absolute;
+    top: .8rem;
+    left: -2rem;
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+}
+.section-footer a{
+    padding: .5rem 0;
+}
+.personal-info{
+    width: 28rem;
+}
+/* .personal-info address{
+    display: flex;
+    flex-direction: column;
+} */
+.personal-info address div{
+    margin: .8rem 0;
+}
+.personal-info p{
+    text-transform: capitalize;
+    font-weight: bold;
+}
+.personal-info p,
+.personal-info a
+{
+    font-style:normal;
+}
+
+.personal-info a{
+    color: rgba(0, 0, 255, 0.603);
+}
+.personal-info a:hover{
+    color: rgba(0, 0, 255, 0.603);
+}
+
+.personal-info a,
+.personal-info span{
+    padding: 0 .3rem;
+}
+.personal-info span{
+    font-size: 1rem;
+}
+
+.personal-info a[href="mailto:bhavinpampaniya07@gmail.com"]{
+    font-size: 1.1remrem;
+    text-transform: lowercase;
+}
+.social-links .ico{
+    color: white;
+}
+.social-links{
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+.copyright{
+    margin-top:4rem;
+    color: white;
+    text-align: center;
+    font-size: 1.6rem;
+}
+

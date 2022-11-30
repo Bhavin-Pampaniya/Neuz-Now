@@ -34,6 +34,7 @@ router.get("/health", async (req, res) => {
             "https://newsapi.org/v2/top-headlines?country=in&category=health&apiKey=eff6c38fe8674e6f91eebd45259238b4"
         );
         const data = await response.json();
+        console.log(data);
         // console.log(data);
         res.render("articles/health",{articles:data.articles,login:flag});
       } catch (error) {
